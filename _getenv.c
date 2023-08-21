@@ -15,10 +15,7 @@ char *_getenv(const char *name)
 	{
 		token = strtok(environ[i], "=");
 		if (_strcmp(token, name) == 0)
-		{
-			token = strtok(NULL, "=");
-			return(token);
-		}
+			return(strtok(NULL, "\n"));
 		i++;
 	}
 	return (NULL);

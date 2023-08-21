@@ -7,20 +7,16 @@
 */
 char *cmd_dir(char *cmd)
 {
-
-    char *PATH = _getenv("PATH"); /*string hold the full PATH*/
-    char *token; /*to parse the value of PATH*/
-    char *command; /*the command with its path*/
-    int access_result; /*the return value of access function to see if my command is executable*/
-
+    char *PATH = _getenv("PATH");
+    char *token;
+    char *command;
+    int access_result;
+    if (access(cmd, F_OK) == 0)
+        return (cmd);
     token = strtok(PATH, ":");
     while (token)
     {
-        if (_strcmp(token, cmd) == 0)
-        {
-            return (cmd);
-        }
-        command = malloc(_strlen(token) + _strlen(cmd) + 2);
+        command = malloc(sizeof(char) * 1024);
         if (command == NULL)
         {
             _puts("Error");
@@ -32,7 +28,6 @@ char *cmd_dir(char *cmd)
         access_result = access(command, F_OK);
         if (access_result == 0)
         {
-            /*free(command);*/
             return(command);
         }
         free(command);

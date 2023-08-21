@@ -6,7 +6,7 @@
  * Return: array of tokens of the string
 */
 
-char **_strtok(char *str, char *delimiter)
+char **_split(char *str, char *delimiter)
 {
     char *token;
     char **tokens = NULL;
