@@ -39,7 +39,7 @@ int main(int ac, char **av, char **env)
 				}
 				else
 				{
-					perror(tokens[0]);
+					perror(av[0]);
 					exit(EXIT_FAILURE);
 				}
 			}
