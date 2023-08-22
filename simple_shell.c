@@ -19,7 +19,7 @@ int main(int ac, char **av, char **env)
 		line_number++;
 		if (isatty(STDIN_FILENO))
 			write(1, "$ ", 2);
-		total = _getline(&buffer, &buf_size, STDIN_FILENO);
+		total = getline(&buffer, &buf_size, STDIN_FILENO);
 		if (total == -1)
 			exit(EXIT_FAILURE);
 		tokens = _split(buffer, " \t\n");
