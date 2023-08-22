@@ -39,6 +39,11 @@ int main(int ac, char **av, char **env)
 					exit(EXIT_SUCCESS);
 				}
 				else
+<<<<<<< HEAD
+=======
+				{
+					perror(av[0]);
+>>>>>>> 9be49036a6a69eb10e868dc262481220bc00e823
 					exit(EXIT_FAILURE);
 			}
 			else
