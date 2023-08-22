@@ -1,18 +1,17 @@
 #include "shell.h"
 /**
- * _strtok - tokenize a string
+ * _split - tokenize a string
  * @str: string
  * @delimiter: the delimiter
  * Return: array of tokens of the string
 */
-
 char **_split(char *str, char *delimiter)
 {
-    char *token;
-    char **tokens = NULL;
-    int i = 0;
+	char *token;
+	char **tokens = NULL;
+	int i = 0;
 
-    tokens = malloc(sizeof(char *) * 1024);
+	tokens = malloc(sizeof(char *) * 1024);
 	token = strtok(str, delimiter);
 	while (token)
 	{
@@ -21,5 +20,5 @@ char **_split(char *str, char *delimiter)
 		i++;
 	}
 	tokens[i] = NULL;
-    return (tokens);
+	return (tokens);
 }

@@ -8,17 +8,18 @@
 */
 int main(int ac, char **av, char **env)
 {
-	int total = 0;
+	int total = 0, line_number = 0;
 	char *buffer = NULL, **tokens = NULL, *cmd;
 	size_t buf_size = 0;
 	pid_t pid;
-	(void)av;
 	(void)ac;
 
 	while (1)
 	{
-		write(1, "$ ", 2);
-		total = _getline(&buffer, &buf_size, stdin);
+		line_number++;
+		if (isatty(STDIN_FILENO))
+			write(1, "$ ", 2);
+		total = _getline(&buffer, &buf_size, STDIN_FILENO);
 		if (total == -1)
 			exit(EXIT_FAILURE);
 		tokens = _split(buffer, " \t\n");
@@ -31,17 +32,14 @@ int main(int ac, char **av, char **env)
 			pid = fork();
 			if (pid == 0)
 			{
-				cmd = cmd_dir(tokens[0]);
+				cmd = cmd_dir(tokens[0], av[0], line_number);
 				if (cmd)
 				{
 					execve(cmd, tokens, env);
 					exit(EXIT_SUCCESS);
 				}
 				else
-				{
-					perror(tokens[0]);
 					exit(EXIT_FAILURE);
-				}
 			}
 			else
 				wait(NULL);
